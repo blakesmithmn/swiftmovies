@@ -7,17 +7,85 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Swift Movies")
+
+
+// the template for how data is being decoded
+struct Movie: Hashable, Codable {
+    let id: Int
+    let title: String
+    let overview: String
+    let image: String
+}
+
+// variables that need to be removed
+let apiKey = "4b4eeb2c591ca77fad51e119b67eb5c4"
+let search = "us"
+
+// GET request to API
+
+
+class ViewModel: ObservableObject {
+    @Published var movies: [Movie] = []
+    func fetchMovies(){
+        guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&language=en-US&query=\(search)&page=1&include_adult=false")
+        else {
+            return
         }
-        .padding()
+        
+        let task = URLSession.shared.dataTask(with: url) {[weak self] data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            // CONVERT TO JSON
+            do {
+                let movies = try JSONDecoder().decode([Movie].self, from: data)
+                DispatchQueue.main.async{
+                    self?.movies = movies
+                }
+            }
+            catch {
+                print(error)
+            }
+            
+        }
+        task.resume()
+
     }
 }
+
+
+struct ContentView: View {
+    @StateObject var viewModel = ViewModel()
+    
+    
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(viewModel.movies, id: \.self) {movie in
+                    HStack {
+                        Image("")
+                            .frame(width: 130, height: 70)
+                            .background(Color.gray)
+                        Text(movie.name)
+                            .bold()
+                    }
+                    .padding(3)
+                }
+                
+            }
+            .navigationTitle("Movies")
+            .onAppear {
+                viewModel.fetchMovies()
+            }
+                    
+                }
+                
+            }
+    
+           
+    }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
