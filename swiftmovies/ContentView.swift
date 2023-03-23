@@ -18,7 +18,7 @@ struct Movie: Hashable, Codable {
 }
 
 // variables that need to be removed
-let apiKey = "4b4eeb2c591ca77fad51e119b67eb5c4"
+let apiKey = 
 let search = "us"
 
 // GET request to API
