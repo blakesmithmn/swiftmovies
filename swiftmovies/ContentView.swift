@@ -7,54 +7,6 @@
 
 import SwiftUI
 
-
-
-// the template for how data is being decoded
-struct Movie: Hashable, Codable {
-    let id: Int
-    let title: String
-    let overview: String
-    let image: String
-}
-
-// variables that need to be removed
-let apiKey = 
-let search = "us"
-
-// GET request to API
-
-
-class ViewModel: ObservableObject {
-    @Published var movies: [Movie] = []
-    func fetchMovies(){
-        guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&language=en-US&query=\(search)&page=1&include_adult=false")
-        else {
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) {[weak self] data, _, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            
-            // CONVERT TO JSON
-            do {
-                let movies = try JSONDecoder().decode([Movie].self, from: data)
-                DispatchQueue.main.async{
-                    self?.movies = movies
-                }
-            }
-            catch {
-                print(error)
-            }
-            
-        }
-        task.resume()
-
-    }
-}
-
-
 struct ContentView: View {
     @State var movieID = Int()
     @State var gifURL = String()
@@ -63,10 +15,13 @@ struct ContentView: View {
     // @State var searchResults = [dataStructure]
     
     var body: some View {
+        
+//        List(searchResults) { movie in
+//
+//        }
         VStack {
             TextField("Search Movies", text: $searchString)
             Button("Search"){fetchAPI()}
-            Text("\(movieID)")
             Text("\(gifURL)")
                 .onTapGesture {
                     let url = URL(string: gifURL)
@@ -82,9 +37,8 @@ struct ContentView: View {
     }
     
     func fetchAPI(){
-//        let apiKey = "Cv2JmBmYxh5VCXLiub2qytt0lLqTijcv"
-//        let url = URL(string: "https://api.giphy.com/v1/gifs/search?api_key=\(apiKey)&q=\(self.searchString)&limit=25&offset=0&rating=g&lang=en")
-        let apiKey = 
+
+       
         let searchStringEncoded = searchString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
         let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&language=en-US&query=\(searchStringEncoded)&page=1&include_adult=false")
         
