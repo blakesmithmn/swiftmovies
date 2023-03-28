@@ -14,6 +14,7 @@
 		B11EA68E29CCC75200A5BAB3 /* swiftmoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11EA68D29CCC75200A5BAB3 /* swiftmoviesTests.swift */; };
 		B11EA69829CCC75200A5BAB3 /* swiftmoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11EA69729CCC75200A5BAB3 /* swiftmoviesUITests.swift */; };
 		B11EA69A29CCC75200A5BAB3 /* swiftmoviesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11EA69929CCC75200A5BAB3 /* swiftmoviesUITestsLaunchTests.swift */; };
+		B12F28E429D35F3500E05105 /* MovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12F28E329D35F3500E05105 /* MovieAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		B11EA69329CCC75200A5BAB3 /* swiftmoviesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = swiftmoviesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B11EA69729CCC75200A5BAB3 /* swiftmoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftmoviesUITests.swift; sourceTree = "<group>"; };
 		B11EA69929CCC75200A5BAB3 /* swiftmoviesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftmoviesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B12F28E329D35F3500E05105 /* MovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				B11EA67C29CCC75000A5BAB3 /* swiftmoviesApp.swift */,
 				B11EA67E29CCC75000A5BAB3 /* ContentView.swift */,
+				B12F28E329D35F3500E05105 /* MovieAPI.swift */,
 				B11EA68029CCC75100A5BAB3 /* Assets.xcassets */,
 				B11EA68229CCC75100A5BAB3 /* Preview Content */,
 			);
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B12F28E429D35F3500E05105 /* MovieAPI.swift in Sources */,
 				B11EA67F29CCC75000A5BAB3 /* ContentView.swift in Sources */,
 				B11EA67D29CCC75000A5BAB3 /* swiftmoviesApp.swift in Sources */,
 			);
